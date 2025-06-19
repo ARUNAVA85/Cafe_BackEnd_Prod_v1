@@ -1,7 +1,6 @@
 services:
   - type: web
     name: Cafe_BackEnd_Prod_v1
-    env: java
     plan: free
     buildCommand: ./mvnw clean package -DskipTests
     startCommand: java -jar target/*.jar
