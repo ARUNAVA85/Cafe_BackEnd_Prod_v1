@@ -1,14 +1,17 @@
 # Use OpenJDK 17 base image
 FROM eclipse-temurin:17-jdk
 
-# Set working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy all project files into the container
+# Copy everything to /app
 COPY . .
 
-# Build the application using Maven
+# Fix: Make mvnw executable
+RUN chmod +x mvnw
+
+# Build the app
 RUN ./mvnw clean package -DskipTests
 
-# Run the JAR file
+# Run the jar
 CMD ["java", "-jar", "target/*.jar"]
